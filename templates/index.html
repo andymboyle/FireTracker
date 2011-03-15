@@ -1,0 +1,4 @@
+<p><h1>HEY! WELCOME TO FIRETRACKER</h1></p>
+<p>Recent fires: {% for f in fires %}{{ f.date.date }} -- <a href="{{f.get_absolute_url}}">{{ f.location.street }}</a>{% endfor %}</p>
+<p><h2>Other ways this data could be used</h2></p>
+<p>{% for f in fires %}There was a fire on {{ f.date.date }} {% if f.cause %}caused by {{ f.cause.type.lower }}{% else %}with an unknown cause {% endif %} at {{ f.location.street }}, according to <a href="{{ f.source.get_absolute_url }}">{{ f.source.title.title_short }} {{ f.source.first_name }} {{ f.source.last_name }}</a> of the {{ f.source.title.employer.name }}.{% if f.monetary_damage %} The fire caused ${{ f.monetary_damage }} in damage.{% endif %}{% if f.victims %} There were injuries.{% endif %} <a href="{{ f.get_absolute_url }}">Click here for more information.{% endfor %}</a> </p></br>

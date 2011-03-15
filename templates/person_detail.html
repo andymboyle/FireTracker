@@ -1,0 +1,5 @@
+<h2><a href="/firetracker/">Return to home</a></h2>
+<p><strong>Name:</strong> {{ person.first_name }} {{ person.last_name }}</p>
+<p><strong>Birthdate:</strong> {{ person.dob }}</p>
+{% if person.title %}<p><strong>Title:</strong> {{ person.title.title }}</p>
+<p><strong>Employer:</strong> {{ person.title.employer.name }}</p>{% endif %}

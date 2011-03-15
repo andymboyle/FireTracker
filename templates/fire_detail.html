@@ -1,0 +1,15 @@
+<h2><a href="/firetracker/">Return to home</a></h2>
+<p><strong>Date:</strong> {{ fire.date.date }}</p>
+<p><strong>Street:</strong> {{ fire.location.street }}</p>
+<p><strong>City:</strong> {{ fire.location.city.name }}, {{ fire.location.city.state.short_name }}</p>
+<p><strong>Responding:</strong> {% if fire.respondings %}{% for r in fire.respondings.all %}{{ r.department.name }}'s {{ r.name }}{% endfor %}{% else %}Not available{% endif %} </p>
+<p><strong>Fire reported:</strong> {% if fire.date.time %}{{ fire.date.time }}{% else %}Not available{% endif %}</p>
+{% if fire.response_time %}<p><strong>Response time:</strong> {{ fire.time_took }}</p>{% endif %}
+{% if fire.extinguish_time %}<p><strong>Extinguish time:</strong> {{ fire.extinguish_time_took }}</p>{% endif %}
+<p><strong>Property value:</strong> {% if fire.location.property_value %}${{ fire.location.property_value }}{% else %}Not available{% endif %}</p>
+<p><strong>Property damage:</strong> {% if fire.monetary_damage %}${{ fire.monetary_damage }}{% else %}Not available{% endif %}</p>
+<p><strong>Injured:</strong> {% for v in fire.victims.all %}{% if forloop.first %}{% else %}, {% endif %}{{ v.person.first_name }} {{ v.person.last_name }}{% if v.injury %} with {{ v.injury|lower }}{% endif %}{% endfor %}</p>
+<p><strong>Fire cause:</strong> {% if fire.cause %}{{ fire.cause.type }}{% else %}Unknown{% endif %}</p>
+<p><strong>Media coverage:</strong> {% for s in fire.story_links.all %}{% if forloop.first %}{% else %}, {% endif %}<a href="{{ s.link }}">{{ s.headline }}</a>{% endfor %}</p>
+<p><i>Information from <a href="{{ fire.source.get_absolute_url}}">{{ fire.source.title.title_short }} {{ fire.source.first_name }} {{ fire.source.last_name }}</a> of {{ fire.source.title.employer.name }}.</i></p>
+<p></p>
