@@ -3,8 +3,6 @@ from firetracker.fires.models import State, City, Address, Department, Station, 
 from django.shortcuts import render_to_response, redirect, get_list_or_404, get_object_or_404
 import urllib
 from django.conf import settings
-# from django.views.decorators.cache import cache_control
-# from django.db.models import Q
 
 def index(request):
     fires = Fire.objects.all().order_by('date')[:5]
